@@ -1,9 +1,10 @@
 const merge = require('webpack-merge');
 const base = require('./base');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
+const TerserPlugin = require('terser-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
 const cwd = process.cwd();
 
@@ -52,7 +53,8 @@ module.exports = merge(base, {
     new MiniCssExtractPlugin({
       filename: '[name]-[contenthash:8].css',
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin()
   ],
 
 })

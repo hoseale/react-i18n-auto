@@ -20,10 +20,11 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     modules: [path.resolve(cwd, './node_modules')],
     alias: {
+      'pages': path.resolve(cwd, './src/pages'),
       'widget': path.resolve(cwd, './src/widget'),
       'utils': path.resolve(cwd, './src/utils'),
       'config': path.resolve(cwd, './src/config'),
-      'locales': path.resolve(cwd, 'locales'),
+      'locales': path.resolve(cwd, 'locales')
     }
   },
   module: {
@@ -51,6 +52,7 @@ module.exports = {
     //   "BACKEND_BASE": JSON.stringify(configObj.BACKEND_BASE),
     //   "SERVER": JSON.stringify(configObj.SERVER)
     // }),
+    new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
     new HtmlWebpackPlugin({
       showErrors: true,
       buildTime: new Date(),
