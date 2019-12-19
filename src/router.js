@@ -7,21 +7,19 @@ import {
 } from "react-router-dom";
 import Loadable from 'react-loadable';
 import { isEmpty } from 'lodash';
-import HomeView  from 'pages/home/homeView';
-import DemoView  from 'pages/demo/demoView';
 
-
-function loadCom(view, Mod) {
+function loadCom(view, mod) {
   return Loadable.Map({
     loader: {
       Component: view,
-      store: () => Promise.resolve('asd'),
+      store: mod,
     },
     loading: () => <div>loading</div>,
     render(loaded, props) {
       let Component = loaded.Component.default;
-      let store = loaded.store.default;;
-      return <Component {...props}  store={store} />;
+      let Store = loaded.store.default;
+      console.log(new Store(), 'loaded.store')
+      return <Component {...props} store={ new Store() } cc={333} />;
     },
   });
 }
@@ -32,15 +30,16 @@ const routes = [
     path: '/',
     component: ({children}) => <div>{children}</div>,
     mod: '',
+    redirect: '/home',
     child: [
       {
         path: '/home',
-        component: loadCom(() => import('pages/home/homeView')),
+        component: loadCom(() => import('pages/home/homeView'), () => import('pages/home/homeMod')),
         mod: '',
       },
       {
         path: '/demo',
-        component: loadCom(() => import('pages/demo/demoView')),
+        component: loadCom(() => import('pages/demo/demoView'), () => import('pages/demo/demoMod')),
         mod: '',
       }
     ]
@@ -54,7 +53,7 @@ function createRoutes(routes) {
       return <Layout>
         <Switch>
           { createRoutes(item.child) }
-          <Redirect to={item.child[0].path}/>
+          <Redirect to={item.redirect}/>
         </Switch>
       </Layout>
     }

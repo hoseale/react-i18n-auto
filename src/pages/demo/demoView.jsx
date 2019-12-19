@@ -1,5 +1,6 @@
 import React from 'react';
+import { get } from 'lodash';
 
-export default () => {
+export default (props) => {
   return <div>demoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
 }

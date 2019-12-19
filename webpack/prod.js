@@ -1,7 +1,6 @@
 const merge = require('webpack-merge');
 const base = require('./base');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -15,6 +14,7 @@ module.exports = merge(base, {
       name: entrypoint => `runtimechunk~${entrypoint.name}`
     },
     splitChunks: {
+      minSize: 0,
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
@@ -50,11 +50,8 @@ module.exports = merge(base, {
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name]-[contenthash:8].css',
-    }),
     new CleanWebpackPlugin(),
-    new BundleAnalyzerPlugin()
+    // new BundleAnalyzerPlugin()
   ],
 
 })
