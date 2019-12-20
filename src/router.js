@@ -18,7 +18,7 @@ function loadCom(view, mod) {
     render(loaded, props) {
       let Component = loaded.Component.default;
       let Store = loaded.store.default;
-      console.log(new Store(), 'loaded.store')
+      console.log(Store, 'loaded.store')
       return <Component {...props} store={ new Store() } cc={333} />;
     },
   });

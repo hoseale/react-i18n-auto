@@ -1,6 +1,6 @@
 import { observable, action, computed } from 'mobx'
 
-export class Mod {
+class Mod {
   @observable
   count = 0
 

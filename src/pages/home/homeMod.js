@@ -1,12 +1,16 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action, computed, configure, runInAction } from 'mobx';
 import $ from 'jquery';
 
-export class Mod {
+// 严格模式
+configure({enforceActions: 'always'})
+
+class Mod {
   @observable
   count = 0
 
   @observable
   state={
+    loading: false,
     list: []
   }
 
@@ -23,7 +27,9 @@ export class Mod {
   @action getData() {
     $.getJSON('/assets/mock/hello.json', (res) => {
       console.log(res, 'res')
-      this.state.list = res.data
+      runInAction(() => {
+        this.state.list = res.data
+      })
     })
   }
 
