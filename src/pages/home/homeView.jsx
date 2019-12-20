@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'antd';
 import { observer } from 'mobx-react';
 
-
 const View = (props) => {
   console.log(props,'props')
   const { store } = props;
   useEffect(() => {
-    // store.getData();
-    return;
-  })
+    store.getData();
+  },[])
   const { state: { list } } = store
   return (
     <div>
