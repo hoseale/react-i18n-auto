@@ -14,6 +14,7 @@ const View = (props) => {
       {store.count} <br/>
       <Button size='small' onClick={() => { store.decrement() }}>删除</Button>
       <Button size='small' type='primary' onClick={() => { store.increment() }}>增加</Button>
+      <hr/>
       {
         list.map(item => {
           return <p>{item}</p>

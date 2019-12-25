@@ -107,12 +107,12 @@ module.exports = {
     ]
   },
   plugins: [
-    // new webpack.DefinePlugin({
-    //   "ENV": JSON.stringify(buildEnv),
-    //   "CDN_BASE": JSON.stringify(configObj.CDN_BASE),
-    //   "BACKEND_BASE": JSON.stringify(configObj.BACKEND_BASE),
-    //   "SERVER": JSON.stringify(configObj.SERVER)
-    // }),
+    // 注入全局变量
+    new webpack.DefinePlugin({
+      "ENV": JSON.stringify(buildEnv),
+      "CDN_BASE": JSON.stringify(configObj.CDN_BASE),
+      "BACKEND_BASE": JSON.stringify(configObj.BACKEND_BASE)
+    }),
     new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
     new MiniCssExtractPlugin({
       filename: buildEnv == 'loc' ? '[name].css' : '[name]-[contenthash:8].css',

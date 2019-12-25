@@ -10,14 +10,25 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "config": {
-    "loc": {}
+    "loc": {
+      "ENV": "loc",
+      "BACKEND_BASE": "",
+      "CDN_BASE": ""
+    },
+    "prod": {
+      "ENV": "prod",
+      "BACKEND_BASE": "",
+      "CDN_BASE": ""
+    }
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "@loadable/component": "^5.11.0",
     "antd": "^3.26.2",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "mobx": "^5.15.1",
