@@ -51,7 +51,7 @@ module.exports = merge(base, {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
   ],
 
 })

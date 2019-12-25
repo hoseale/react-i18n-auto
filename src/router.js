@@ -2,45 +2,39 @@ import React from 'react';
 import {
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
-import Loadable from 'react-loadable';
+import loadable from '@loadable/component'
 import { isEmpty } from 'lodash';
 
-function loadCom(view, mod) {
-  return Loadable.Map({
-    loader: {
-      Component: view,
-      store: mod,
-    },
-    loading: () => <div>loading</div>,
-    render(loaded, props) {
-      let Component = loaded.Component.default;
-      let Store = loaded.store.default;
-      console.log(Store, 'loaded.store')
-      return <Component {...props} store={ new Store() } cc={333} />;
-    },
-  });
+// 视图文件、store文件代码分割
+function loadCom({ view, mod }) {
+  const View = loadable(view);
+  const Mod = loadable.lib(mod);
+  return (props) => <Mod>
+    {({ default: Store }) => <View {...props} store={ new Store() } /> }
+  </Mod>
 }
-
 
 const routes = [
   {
     path: '/',
     component: ({children}) => <div>{children}</div>,
-    mod: '',
     redirect: '/home',
     child: [
       {
         path: '/home',
-        component: loadCom(() => import('pages/home/homeView'), () => import('pages/home/homeMod')),
-        mod: '',
+        component: loadCom( {
+          view: () => import(/* webpackChunkName: 'homeView' */'pages/home/homeView'),
+          mod: () => import(/* webpackChunkName: 'homeMod' */'pages/home/homeMod')
+        })
       },
       {
         path: '/demo',
-        component: loadCom(() => import('pages/demo/demoView'), () => import('pages/demo/demoMod')),
-        mod: '',
+        component: loadCom({
+          view: () => import(/*webpackChunkName: 'demoView' */'pages/demo/demoView'),
+          mod: () => import(/*webpackChunkName: 'demoMod' */'pages/demo/demoMod')
+        })
       }
     ]
   }

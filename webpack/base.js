@@ -93,9 +93,9 @@ module.exports = {
             options: {
               sourceMap: true,
               javascriptEnabled: true,
-              // modifyVars: {
-              //   CDN_BASE: JSON.stringify(configObj.CDN_BASE)
-              // }
+              modifyVars: {
+                'hack': `true; @import "${path.resolve(cwd, './src/config/theme/antd_theme.less')}";`
+              }
             }
           }
         ]

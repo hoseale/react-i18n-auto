@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import { observer } from 'mobx-react';
 
 const View = (props) => {
+  console.log(props, 'props')
   const { store } = props;
   useEffect(() => {
     store.getData();
