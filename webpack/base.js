@@ -24,6 +24,7 @@ module.exports = {
       'widget': path.resolve(cwd, './src/widget'),
       'utils': path.resolve(cwd, './src/utils'),
       'config': path.resolve(cwd, './src/config'),
+      'hooks': path.resolve(cwd, './src/hooks'),
       'locales': path.resolve(cwd, 'locales')
     }
   },

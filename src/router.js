@@ -7,7 +7,7 @@ import {
 import loadable from '@loadable/component'
 import { isEmpty } from 'lodash';
 
-// 视图文件、store文件代码分割
+// ui文件、store文件代码分割
 function loadCom({ view, mod }) {
   const View = loadable(view);
   const Mod = loadable.lib(mod);

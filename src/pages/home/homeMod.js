@@ -6,39 +6,30 @@ configure({enforceActions: 'always'})
 
 class Mod {
   @observable
-  count = 0
-
-  @observable
   state={
     loading: false,
+    total: 0,
     list: []
   }
 
-  @action
-  increment() {
-    this.count++
-  }
-
-  @action
-  decrement() {
-    this.count--
-  }
-
-  @action async getData() {
+  @action async getData(page=1) {
     try {
       const res = await Serv.getData();
-      console.log(res, res)
+      let list = [];
+      if (page == 1) {
+        list = res.data.slice(0, 2);
+      } else if (page == 2) {
+        list = res.data.slice(2, 4);
+      } else if (page == 3) {
+        list = res.data.slice(4);
+      }
       runInAction(() => {
-        this.state.list = res.data
+        this.state.list = list
+        this.state.total = 5
       })
     } catch(e) {
       console.log(e)
     }
-  }
-
-  @computed
-  get doubleCount() {
-    return this.count * 2
   }
 }
 

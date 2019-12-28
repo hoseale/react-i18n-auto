@@ -1,22 +1,27 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action, computed, configure } from 'mobx'
+// 严格模式
+configure({enforceActions: 'always'});
 
 class Mod {
   @observable
-  count = 0
+  state={
+    count:0
+  }
 
   @action
   increment() {
-    this.count++
+    console.log(1111)
+    this.state.count++
   }
 
   @action
   decrement() {
-    this.count--
+    this.state.count--
   }
 
   @computed
   get doubleCount() {
-    return this.count * 2
+    return this.state.count * 2
   }
 }
 

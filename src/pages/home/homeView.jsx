@@ -1,27 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
+import React, { useEffect } from 'react';
+import { Table } from 'antd';
 import { observer } from 'mobx-react';
+import { usePage } from 'hooks';
 
 const View = (props) => {
-  console.log(props, 'props')
   const { store } = props;
+  const { state: { list, total } } = store;
+  
   useEffect(() => {
     store.getData();
   },[])
-  const { state: { list } } = store
+  
+  const columns = [
+    {
+      title: '姓名',
+      dataIndex: 'name',
+      key: 'name',
+    },
+    {
+      title: '年龄',
+      dataIndex: 'age',
+      key: 'age',
+    },
+    {
+      title: '住址',
+      dataIndex: 'address',
+      key: 'address',
+    },
+  ];
+
+  const [ pageConf, setPage ] = usePage({total});
+
   return (
     <div style={{padding: 50}}>
-      {store.count} <br/>
-      <Button size='small' onClick={() => { store.decrement() }}>删除</Button>
-      <Button size='small' type='primary' onClick={() => { store.increment() }}>增加</Button>
       <hr/>
-      {
-        list.map(item => {
-          return <p>{item}</p>
-        })
-      }
+      <Table
+        dataSource={list}
+        pagination={{
+          ...pageConf
+        }}
+        onChange={(pagination, filters, sorter) => { store.getData(pagination.current); setPage(pagination);} }
+        columns={columns}
+      />
     </div>
   ) 
 }
+
 
 export default observer(View)
