@@ -1,4 +1,4 @@
-# 一个react + hooks + mobx + @loadable/component例子
+# 一个react + hooks + mobx + @loadable/component 简单例子
 
 ### 功能
 * ui层、mod层次根据路由按需加载
