@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import { observer } from 'mobx-react';
-import { usePage } from 'hooks';
+import { useHistory, Link } from "react-router-dom";
+import { usePage, useMount, useUnMount } from 'hooks';
 
 const View = (props) => {
   const { store } = props;
   const { state: { list, total } } = store;
-  
-  useEffect(() => {
+  useMount(() => {
     store.getData();
-  },[])
-  
+  });
+  useUnMount(() => {
+    console.log(111111111111)
+  })
   const columns = [
     {
       title: '姓名',
@@ -33,6 +35,7 @@ const View = (props) => {
 
   return (
     <div style={{padding: 50}}>
+      <Link to='/demo'>demo</Link>
       <hr/>
       <Table
         dataSource={list}

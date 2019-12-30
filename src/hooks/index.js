@@ -13,9 +13,29 @@ function usePage(defaultPageOpts={}) {
   }
   const [defaultPage, setPage]= useState(() => Object.assign(pagination, defaultPageOpts));
   useEffect(() => {
-    setPage({...defaultPage, total: defaultPageOpts.total})
+    setPage({...defaultPage, total: defaultPageOpts.total })
   }, [defaultPageOpts.total])
   return [defaultPage, setPage];
 }
 
-export { usePage }
+/**
+ * 模拟Mount生命周期
+ * @param {function} cb 执行函数
+ */
+function useMount(cb) {
+  useEffect(() => {
+    cb && cb();
+  }, [])
+}
+
+/**
+ * 模拟UnMount生命周期
+ * @param {function} cb 执行函数
+ */
+function useUnMount(cb) {
+  useEffect(() => {
+    return cb
+  }, [])
+}
+
+export { usePage, useMount, useUnMount }
