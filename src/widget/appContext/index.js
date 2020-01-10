@@ -8,14 +8,10 @@ import 'moment/locale/zh-cn';
 import moment from 'moment';
 moment.locale('zh-cn');
 
-const message = require('locales/zh-CN/common.json');
-
 export default () => {
   return (
     <ConfigProvider locale={zhCN}>
-      <IntlProvider locale="zh-CN" messages={message}>
-        <AppLayout/>
-      </IntlProvider>
+      <AppLayout/>
     </ConfigProvider>
   )
 }

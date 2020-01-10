@@ -3,7 +3,7 @@ import { Table } from 'antd';
 import { observer } from 'mobx-react';
 import { useHistory, Link } from "react-router-dom";
 import { usePage, useMount, useUnMount } from 'hooks';
-import { FormattedMessage, formatMessage } from 'react-intl';
+import ts from 'config/i18n';
 
 const View = (props) => {
   const { store } = props;
@@ -36,8 +36,10 @@ const View = (props) => {
 
   return (
     <div style={{padding: 50}}>
-      {formatMessage({id: 'asd.asd'})}
-      <FormattedMessage id='asd.asd'></FormattedMessage>
+     
+      {ts('hello')}
+      {ts('aa.bb')}
+
       <Link to='/demo'>demo</Link>
       <hr/>
       <Table
@@ -48,6 +50,7 @@ const View = (props) => {
         onChange={(pagination, filters, sorter) => { store.getData(pagination.current); setPage(pagination);} }
         columns={columns}
       />
+      <a onClick={() => store.alertMsg() }>弹出消息</a>
     </div>
   ) 
 }

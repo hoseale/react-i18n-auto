@@ -1,5 +1,7 @@
 import Serv from './homeServ';
 import { observable, action, computed, configure, runInAction } from 'mobx';
+import { message } from 'antd'
+import ts from 'config/i18n';
 
 // 严格模式
 configure({enforceActions: 'always'})
@@ -30,6 +32,11 @@ class Mod {
     } catch(e) {
       console.log(e)
     }
+  }
+
+  @action
+  alertMsg() {
+    message.success(ts('hello'))
   }
 }
 
