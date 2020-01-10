@@ -1,16 +1,23 @@
 import { createIntl, createIntlCache } from 'react-intl'
 
-const cache = createIntlCache();
-const intl = createIntl({
-  locale: 'zh',
-  messages: {
-    hello: 'sad dfsdf gdfg',
-    'aa.bb': '呵呵'
+class I18n{
+  init(opts) {
+    const cache = createIntlCache();
+    const intl = createIntl(opts, cache);
+    this.intl = intl
   }
-}, cache);
 
-function ts(id, vals={}) {
-  return intl.formatMessage({id}, vals)
+  ts(id, vals={}) {
+    return this.intl.formatMessage({id}, vals)
+  }
 }
 
-export default ts 
+const _I18n = new I18n();
+
+function ts(id, vals={}) {
+  return _I18n.ts(id, vals={})
+}
+
+export { _I18n }
+
+export default ts

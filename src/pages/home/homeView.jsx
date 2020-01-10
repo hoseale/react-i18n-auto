@@ -33,7 +33,7 @@ const View = (props) => {
   ];
 
   const [ pageConf, setPage ] = usePage({total});
-
+  console.log(ts, 'ts');
   return (
     <div style={{padding: 50}}>
      
