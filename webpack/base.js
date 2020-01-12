@@ -17,7 +17,7 @@ module.exports = {
     //publicPath: publicPath
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.less'],
+    extensions: ['.js', '.jsx','.ts', '.css', '.less'],
     modules: [path.resolve(cwd, './node_modules')],
     alias: {
       'pages': path.resolve(cwd, './src/pages'),
@@ -44,6 +44,7 @@ module.exports = {
           }
         ]
       },
+      { test: /\.ts?$/, loader: "ts-loader" },
       {
         test:  /\.(css|less)$/,
         exclude: /node_modules/,

@@ -33,13 +33,9 @@ const View = (props) => {
   ];
 
   const [ pageConf, setPage ] = usePage({total});
-  console.log(ts, 'ts');
   return (
     <div style={{padding: 50}}>
-     
-      {ts('hello')}
-      {ts('aa.bb')}
-
+      {ts('home.hello')}
       <Link to='/demo'>demo</Link>
       <hr/>
       <Table

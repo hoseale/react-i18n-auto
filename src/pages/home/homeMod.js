@@ -36,7 +36,7 @@ class Mod {
 
   @action
   alertMsg() {
-    message.success(ts('hello'))
+    message.success(ts('home.mod.success'))
   }
 }
 
