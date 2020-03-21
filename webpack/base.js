@@ -144,8 +144,6 @@ module.exports = {
       }
     ]),
   ],
-  stats: {
-    children: false
-  }
+  stats: 'errors-only'
  
 }
