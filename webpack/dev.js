@@ -12,6 +12,7 @@ module.exports = merge(base, {
     host: 'localhost',
     port: 8100,
     open: true,
+    stats: 'errors-only',
     // proxy: {
     //   '/api': {
     //     target: 'http://oneservice-dev.aliyun.com:8090/api/oneservice/v1',
