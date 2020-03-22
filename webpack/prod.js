@@ -53,5 +53,7 @@ module.exports = merge(base, {
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin()
   ],
-
+  
+  devtool: 'source-map'
+  
 })
